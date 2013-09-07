@@ -44,4 +44,18 @@ describe "User pages" do
       end
     end
   end
+	describe "varidate error message" do
+
+    before { visit signup_path }
+
+    let(:submit) { "Create my account" }
+
+    describe "with valid information" do
+        before { click_button submit }
+
+        it { should have_selector('title', text: 'Sign up') }
+        it { should have_content('error') }
+        it { should have_selector('li', text: "Name can't be blank dayo") }
+    end
+  end
 end
